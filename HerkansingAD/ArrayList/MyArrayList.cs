@@ -79,6 +79,16 @@ namespace Huiswerk2
             return exist;
         }
 
+        public int RemoveLast()
+        {
+            int last = data[size - 1];
+
+            data[size - 1] = 0;
+            size--;
+
+            return last;
+        }
+
         public override string ToString()
         {
             int[] temp = new int[size];

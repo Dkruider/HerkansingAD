@@ -25,6 +25,9 @@ namespace Huiswerk2
 
         // Count the number of occurences in the list of a number
         int CountOccurences(int n);
+        
+        // Remove last value in the list
+        int RemoveLast();
     }
 
     public class MyArrayListIndexOutOfRangeException : Exception

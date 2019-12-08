@@ -1,5 +1,6 @@
 ﻿using System;
 using Huiswerk2;
+using Huiswerk2.Ex5Queue;
 using Huiswerk5;
 
 namespace HerkansingAD
@@ -80,12 +81,63 @@ namespace HerkansingAD
             Console.WriteLine(q.ToString());
         }
 
+        static void Queue()
+        {
+            //IMyQueue<int> queue = new MyArrayQueue<int>();
+            IMyQueue<int> queue = new MyQueue<int>();
+
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+            queue.Enqueue(4);
+            queue.Enqueue(5);
+
+            Console.WriteLine(queue.ToString());
+
+            Console.WriteLine(queue.Contains(10));
+
+            Console.WriteLine(queue.Count());
+
+            queue.Dequeue();
+
+            Console.WriteLine(queue.Count());
+        }
+
+        public static void Stack()
+        {
+            IMyStack<int> stack = new MyStack<int>();
+            IMyStack<int> arrayListStack = new MyArrayListStack<int>();
+
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            stack.Push(4);
+            stack.Push(5);
+
+            arrayListStack.Push(1);
+            arrayListStack.Push(2);
+            arrayListStack.Push(3);
+            arrayListStack.Push(4);
+            arrayListStack.Push(5);
+
+            Console.WriteLine(stack.ToString());
+            Console.WriteLine(arrayListStack.ToString());
+
+            Console.WriteLine(stack.Pop());
+            Console.WriteLine(arrayListStack.Pop());
+
+            Console.WriteLine(stack.ToString());
+            Console.WriteLine(arrayListStack.ToString());
+        }
+
 
         static void Main(string[] args)
         {
-            ArrayList();
-            BinarySearchTree();
-            PriorityQueue();
+            //ArrayList();
+            //BinarySearchTree();
+            //PriorityQueue();
+            //Queue();
+            Stack();
 
             Console.ReadKey();
         }
