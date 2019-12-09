@@ -71,14 +71,21 @@ namespace HerkansingAD
         {
             PriorityQueue<int> q = new PriorityQueue<int>();
 
-            q.array = new int[] { 0, 25, 21, 22, 18, 19, 40, 50, 17, 16 };
-            q.size = 9;
+            q.Add(10);
+            q.Add(9);
+            q.Add(8);
+            q.Add(7);
+            q.Add(6);
+            q.Add(5);
+
+            //q.array = new int[] { 0, 25, 21, 22, 18, 19, 40, 50, 17, 16 };
+            //q.size = 9;
 
             Console.WriteLine(q.ToString());
 
-            q.PercolateDown(1);
+            //q.PercolateDown(1);
 
-            Console.WriteLine(q.ToString());
+            //Console.WriteLine(q.ToString());
         }
 
         static void Queue()
@@ -135,9 +142,9 @@ namespace HerkansingAD
         {
             //ArrayList();
             //BinarySearchTree();
-            //PriorityQueue();
+            PriorityQueue();
             //Queue();
-            Stack();
+            //Stack();
 
             Console.ReadKey();
         }

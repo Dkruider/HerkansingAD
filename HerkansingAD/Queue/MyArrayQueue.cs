@@ -7,7 +7,7 @@ namespace Huiswerk2.Ex5Queue
     class MyArrayQueue<T> : IMyQueue<T>
     {
         private static readonly int _capacity = 100;
-        private readonly T[] _array = new T[_capacity];
+        private T[] _array = new T[_capacity];
         private int _front, _count, _back = -1;
 
         public bool IsEmpty()
@@ -17,7 +17,7 @@ namespace Huiswerk2.Ex5Queue
 
         public void Enqueue(T data)
         {
-            if (_back + 1 >= _capacity) Clear();
+            if (_back + 1 >= _array.Length) Clear();
 
             _back++;
             _count++;
@@ -68,6 +68,13 @@ namespace Huiswerk2.Ex5Queue
         public int Count()
         {
             return _count;
+        }
+
+        public void IncreaseCapacity(int n)
+        {
+            if (n < Count()) return;
+
+            Array.Resize(ref _array, n);
         }
 
         public override string ToString()
