@@ -35,6 +35,11 @@ namespace Huiswerk6
             return findVertex;
         }
 
+        public List<Vertex> GetAllVertices()
+        {
+            return vertexMap.Values.ToList();
+        }
+
         public void AddEdge(string source, string dest, double cost)
         {
             Vertex findVertex = GetVertex(source);
@@ -65,7 +70,7 @@ namespace Huiswerk6
             {
                 printString += v.Name;
 
-                if (v.Dist != INFINITY) printString += "(" + v.Dist + ")";
+                if (!v.Dist.Equals(INFINITY)) printString += "(" + v.Dist + ")";
 
                 if (v.Adj.Count > 0)
                 {

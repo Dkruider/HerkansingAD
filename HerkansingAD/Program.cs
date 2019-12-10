@@ -1,7 +1,9 @@
 ﻿using System;
 using Huiswerk2;
 using Huiswerk2.Ex5Queue;
+using Huiswerk4;
 using Huiswerk5;
+using Huiswerk6;
 
 namespace HerkansingAD
 {
@@ -10,7 +12,7 @@ namespace HerkansingAD
 
         static void ArrayList()
         {
-            System.Console.WriteLine("\n=====   Opgave 1 : MyArrayList   =====\n");
+            System.Console.WriteLine("\n=====   MyArrayList   =====\n");
 
             MyArrayList al = new MyArrayList(10);
             System.Console.WriteLine(al);
@@ -44,9 +46,81 @@ namespace HerkansingAD
             Console.WriteLine($"value exist: {al.CheckValueExist(2)}");
         }
 
+        static void LinkedList()
+        {
+            System.Console.WriteLine("\n=====   MyLinkedList   =====\n");
+
+            IMyLinkedList<string> lst = DSBuilder.CreateMyLinkedList();
+            lst.AddFirst("1");
+            lst.AddFirst("2");
+            lst.AddFirst("3");
+            lst.Insert(0, "0");
+
+            Console.WriteLine(lst.ToString());
+
+            MyLinkedList<string> ll = new MyLinkedList<string>();
+            System.Console.WriteLine(ll);
+            ll.AddFirst("a");
+            ll.AddFirst("b");
+            ll.AddFirst("c");
+            ll.Insert(2, "x");
+            System.Console.WriteLine(ll);
+            try
+            {
+                ll.Insert(4, "kan niet");
+            }
+            catch (MyLinkedListIndexOutOfRangeException e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+
+            ll.Clear();
+            ll.AddFirst("a");
+            ll.AddFirst("b");
+            System.Console.WriteLine(ll.GetFirst());
+            ll.RemoveFirst();
+            System.Console.WriteLine(ll);
+            ll.RemoveFirst();
+            System.Console.WriteLine(ll);
+        }
+
+        static void BinaryTree()
+        {
+            System.Console.WriteLine("\n=====   BinaryTree   =====\n");
+
+            IBinaryTree<int> intTree;
+            IBinaryTree<string> stringTree;
+
+            // Empty tree
+            intTree = DSBuilder.CreateBinaryTreeEmpty();
+            System.Console.WriteLine(intTree.Size());
+            System.Console.WriteLine(intTree.Height());
+            System.Console.WriteLine(intTree.ToPrefixString());
+            System.Console.WriteLine(intTree.ToInfixString());
+            System.Console.WriteLine(intTree.ToPostfixString());
+
+            // Int tree
+            intTree = DSBuilder.CreateBinaryTreeInt();
+            System.Console.WriteLine(intTree.Size());
+            System.Console.WriteLine(intTree.Height());
+            System.Console.WriteLine(intTree.ToPrefixString());
+            System.Console.WriteLine(intTree.ToInfixString());
+            System.Console.WriteLine(intTree.ToPostfixString());
+            System.Console.WriteLine(intTree.NumberOfNodesWithOneChild());
+
+            // String tree
+            stringTree = DSBuilder.CreateBinaryTreeString();
+            System.Console.WriteLine(stringTree.Size());
+            System.Console.WriteLine(stringTree.Height());
+            System.Console.WriteLine(stringTree.ToPrefixString());
+            System.Console.WriteLine(stringTree.ToInfixString());
+            System.Console.WriteLine(stringTree.ToPostfixString());
+        }
 
         static void BinarySearchTree()
         {
+            System.Console.WriteLine("\n=====   BinarySearchTree   =====\n");
+
             BinarySearchTree<int> bst;
 
             bst = new BinarySearchTree<int>();
@@ -69,6 +143,8 @@ namespace HerkansingAD
 
         static void PriorityQueue()
         {
+            System.Console.WriteLine("\n=====   PriorityQueue   =====\n");
+
             PriorityQueue<int> q = new PriorityQueue<int>();
 
             q.Add(10);
@@ -90,6 +166,8 @@ namespace HerkansingAD
 
         static void Queue()
         {
+            System.Console.WriteLine("\n=====   Queue   =====\n");
+
             //IMyQueue<int> queue = new MyArrayQueue<int>();
             IMyQueue<int> queue = new MyQueue<int>();
 
@@ -112,6 +190,8 @@ namespace HerkansingAD
 
         public static void Stack()
         {
+            System.Console.WriteLine("\n=====   Stack   =====\n");
+
             IMyStack<int> stack = new MyStack<int>();
             IMyStack<int> arrayListStack = new MyArrayListStack<int>();
 
@@ -137,14 +217,70 @@ namespace HerkansingAD
             Console.WriteLine(arrayListStack.ToString());
         }
 
+        public static void FirstChildNextSibling()
+        {
+            System.Console.WriteLine("\n=====   FirstChildNextSibling   =====\n");
+
+            IFirstChildNextSibling<string> tree;
+
+            // Empty tree
+            tree = DSBuilder.CreateFirstChildNextSibling_Empty();
+            Console.WriteLine("Empty");
+            tree.PrintPreOrder();
+            System.Console.WriteLine("Size: {0}", tree.Size());
+            System.Console.WriteLine(tree);
+
+            // Small tree
+            tree = DSBuilder.CreateFirstChildNextSibling_Small();
+            Console.WriteLine("\nSmall");
+            tree.PrintPreOrder();
+            System.Console.WriteLine("Size: {0}", tree.Size());
+            System.Console.WriteLine(tree);
+
+            // Tree from figure 18.3
+            tree = DSBuilder.CreateFirstChildNextSibling_18_3();
+            Console.WriteLine("\n18_3");
+            tree.PrintPreOrder();
+            System.Console.WriteLine("Size: {0}", tree.Size());
+            System.Console.WriteLine(tree);
+        }
+
+        public static void Graph()
+        {
+            System.Console.WriteLine("\n=====   Graph   =====\n");
+
+            // Figuur 14.1 uit boek.
+            Graph graph = DSBuilder.CreateGraph14_1();
+
+            graph.Unweighted("V0");
+
+            System.Console.WriteLine($"Unweighted\n{graph}\n");
+
+            graph.Dijkstra("V0");
+
+            System.Console.WriteLine($"Dijkstra\n{graph}\n");
+            Console.WriteLine($"IsConnected: {graph.IsConnected()}");
+
+            IGraph connectedGraph = DSBuilder.ConnectedGraph();
+            connectedGraph.Dijkstra("V0");
+
+            System.Console.WriteLine($"\nDijkstra\n{connectedGraph}\n");
+            Console.WriteLine($"IsConnected: {connectedGraph.IsConnected()}");
+
+        }
+
 
         static void Main(string[] args)
         {
-            //ArrayList();
-            //BinarySearchTree();
+            ArrayList();
+            LinkedList();
+            BinaryTree();
+            BinarySearchTree();
             PriorityQueue();
-            //Queue();
-            //Stack();
+            Queue();
+            Stack();
+            Graph();
+            FirstChildNextSibling();
 
             Console.ReadKey();
         }
