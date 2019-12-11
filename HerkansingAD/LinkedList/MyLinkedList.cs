@@ -57,38 +57,37 @@ namespace Huiswerk2
 
         public void Insert(int index, T data)
         {
-            if (index > size || index < 0)
+            if (index > size || index < 0) throw new MyLinkedListIndexOutOfRangeException();
+
+            MyNode<T> newNode = new MyNode<T> { data = data };
+
+            if (header == null)
             {
-                throw new MyLinkedListIndexOutOfRangeException();
-            }
-
-            MyNode<T> prevNode = header;
-
-            //    Move to the 'previous' node, so index - 1
-            int currentIndex = 0;
-            while (currentIndex < index - 1)
-            {
-                prevNode = prevNode.next;
-
-                currentIndex++;
-            }
-
-            //    Determine 'next' node, either the previous node's next node or the header.
-            MyNode<T> nextNode = index != 0 ? prevNode.next : header;
-            MyNode<T> newNode = new MyNode<T> { data = data, next = nextNode };
-
-            //    Increment size
-            size++;
-
-            //    Place node back onto the linked list
-            if (nextNode == header)
-            {
+                if (index != 0) return;
                 header = newNode;
-                return;
             }
 
-            prevNode.next = newNode;
+            if (index == 0)
+            {
+                newNode.next = header;
+                header = newNode;
+            }
+            else
+            {
+                MyNode<T> current = header;
+                MyNode<T> previous = header;
 
+                for (int i = 0; i < index; i++)
+                {
+                    previous = current;
+                    current = current.next;
+                }
+
+                newNode.next = current;
+                previous.next = newNode;
+            }
+
+            size++;
         }
 
         public override string ToString()
