@@ -1,14 +1,120 @@
 ﻿using System;
+using System.Collections.Generic;
 using Huiswerk2;
 using Huiswerk2.Ex5Queue;
 using Huiswerk4;
 using Huiswerk5;
 using Huiswerk6;
+using HerkansingAD.RecursiveExercises;
+using HerkansingAD.Sorting;
 
 namespace HerkansingAD
 {
     class Program
     {
+
+        static void Factorial()
+        {
+            System.Console.WriteLine("\n=====   Factorial   =====\n");
+
+            Factorial f = new Factorial();
+
+            int MAX = 20;
+
+            System.Console.WriteLine("Iteratief:");
+            for (int n = 1; n < MAX; n++)
+            {
+                System.Console.WriteLine("          {0,2}! = {1,20}", n, f.FacIterative(n));
+            }
+            System.Console.WriteLine("Recursief:");
+            for (int n = 1; n < MAX; n++)
+
+            {
+                System.Console.WriteLine("          {0,2}! = {1,20}", n, f.FacRecursive(n));
+            }
+        }
+
+        static void Fibonacci()
+        {
+            System.Console.WriteLine("\n=====   Fibonacci   =====\n");
+            Fibonacci f = new Fibonacci();
+
+            int MAX = 35;
+
+            System.Console.WriteLine("Recursief:");
+            for (int n = 1; n <= MAX; n++)
+            {
+                System.Console.WriteLine("          Fibonacci({0,2}) = {1,8} ({2,9} calls)", n, f.FibonacciRecursive(n), f.calls);
+            }
+
+            System.Console.WriteLine("Iteratief:");
+            for (int n = 1; n <= MAX; n++)
+            {
+                System.Console.WriteLine("          Fibonacci({0,2}) = {1,8} ({2,9} loops)", n, f.FibonacciIterative(n), f.calls);
+            }
+        }
+
+        static void OmEnOm()
+        {
+            System.Console.WriteLine("\n=====   OmEnOm   =====\n");
+            int MAX = 20;
+
+            OmEnOm o = new OmEnOm();
+
+            for (int n = 0; n < MAX; n++)
+            {
+                System.Console.WriteLine("          OmEnOm({0,2}) = {1,3}", n, o.OmEnOmMethod(n));
+            }
+        }
+
+        static void Enen()
+        {
+            System.Console.WriteLine("\n=====   Enen   =====\n");
+            Enen e = new Enen();
+
+            for (int i = 0; i < 20; i++)
+            {
+                System.Console.WriteLine("Enen({0,4}) = {1,2}", i, e.EnenMethod(i));
+            }
+            System.Console.WriteLine("Enen(1024) = {0,2}", e.EnenMethod(1024));
+        }
+
+        static void ForwardString()
+        {
+            System.Console.WriteLine("\n=====   ForwardString   =====\n");
+
+            ForwardString f = new ForwardString();
+
+            List<int> list = new List<int>(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 });
+
+            System.Console.WriteLine(f.Forward(list, 3));
+            System.Console.WriteLine(f.Forward(list, 7));
+            System.Console.WriteLine(f.BackwardString(list, 3));
+            System.Console.WriteLine(f.BackwardString(list, 7));
+        }
+
+        static void Sorting()
+        {
+            System.Console.WriteLine("\n=====   Sorting   =====\n");
+            Sorter isort = new InsertionSort();
+            Sorter msort = new MergeSort();
+            Sorter ssort = new ShellSort();
+            isort.Run();
+            msort.Run();
+            ssort.Run();
+
+            //            return;
+            int[] numbers =
+                {100, 1000, 10000};
+            //                {12};
+            foreach (int num in numbers)
+            {
+                isort.RunWithTimer(num);
+                msort.RunWithTimer(num);
+                ssort.RunWithTimer(num);
+            }
+        }
+
 
         static void ArrayList()
         {
@@ -272,6 +378,12 @@ namespace HerkansingAD
 
         static void Main(string[] args)
         {
+            Factorial();
+            Fibonacci();
+            OmEnOm();
+            Enen();
+            ForwardString();
+            Sorting();
             ArrayList();
             LinkedList();
             BinaryTree();
