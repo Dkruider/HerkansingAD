@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HerkansingAD.BijlesAD;
 using Huiswerk2;
 using Huiswerk2.Ex5Queue;
 using Huiswerk4;
@@ -375,6 +376,75 @@ namespace HerkansingAD
 
         }
 
+        public static void BstPriority()
+        {
+            System.Console.WriteLine("\n=====   BSTPriority   =====\n");
+
+            BstPriority<int> bstPriority = new BstPriority<int>();
+
+            Console.WriteLine(bstPriority);
+
+            bstPriority.Add(5);
+            bstPriority.Add(3);
+            bstPriority.Add(8);
+            bstPriority.Add(1);
+            bstPriority.Add(4);
+            bstPriority.Add(10);
+            bstPriority.Add(2);
+            bstPriority.Add(9);
+
+            Console.WriteLine(bstPriority);
+
+            Console.WriteLine(bstPriority.Contains(5));
+            Console.WriteLine(bstPriority.Contains(15));
+            Console.WriteLine(bstPriority.Find(9));
+            Console.WriteLine(bstPriority.Remove(9));
+
+            Console.WriteLine(bstPriority);
+
+            Console.WriteLine(bstPriority.FindLastIndex());
+        }
+
+        public static void LinkedListWithoutHeaderNode()
+        {
+            System.Console.WriteLine("\n=====   LinkedListWithoutHeaderNode   =====\n");
+
+            LinkedListWithoutHeaderNode linkedList = new LinkedListWithoutHeaderNode();
+
+            // 0
+            linkedList.AddFirst(1);
+            // 1
+            linkedList.AddFirst(2);
+            // 2
+            linkedList.AddFirst(3);
+            // 3
+            linkedList.AddLast(4);
+
+            Console.WriteLine(linkedList);
+
+            linkedList.Add(2, 10);
+
+            try
+            {
+                linkedList.Add(6, 10);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                linkedList.Add(-1, 10);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            Console.WriteLine(linkedList);
+        }
+
 
         static void Main(string[] args)
         {
@@ -393,6 +463,8 @@ namespace HerkansingAD
             Stack();
             Graph();
             FirstChildNextSibling();
+            BstPriority();
+            LinkedListWithoutHeaderNode();
 
             Console.ReadKey();
         }
